@@ -7,7 +7,18 @@ action_B = {'reward':3, 'prob':1/3, 'match':[2,3]}
 action_C = {'reward':2, 'prob':1/2, 'match':[4,5,6]}
 actions = [action_A,action_B,action_C]
 
-def play_dice_game_1p(selection_strategy, initialization_strategy, rounds=100):
+def is_r():
+	return actions[random.randint(0,2)] 
+
+
+def is_glvars():
+	count_A = 0
+	count_B = 0
+	count_C = 0
+	fail = 0
+	return action_A
+
+def play_dice_game_1p(selection_strategy, rounds=100):
 	'''play dice game, 1 player. 
 	INPUT: selection_strategy,initialization_strategy, rounds
 	OUTPUT: average No. of throws over rounds rounds
@@ -20,15 +31,31 @@ def play_dice_game_1p(selection_strategy, initialization_strategy, rounds=100):
 		profit = 0
 		throws = 0
 		win = 0
-		prev_action = initialization_strategy() #choose a random action to begin
+		fail = 0
+		count_A = 0
+		count_B = 0
+		count_C = 0
+		prev_action = is_r() #choose a random action to begin
 		prev_dice_res = random.randint(1,6)
 
 		while profit < GOAL:
 			
 			#sel action, roll dice, count reward
 			kwargs = {'profit':profit,'throws':throws, 'prev_action':prev_action,\
-					 'prev_dice_res':prev_dice_res, 'win':win}
+					 'prev_dice_res':prev_dice_res, 'win':win, 'count_A':count_A,
+					 'count_B':count_B,'count_C':count_C}
 			sel_action = selection_strategy(**kwargs)
+
+			#counters
+			if sel_action == action_A:
+				count_A += 1
+			elif sel_action == action_B:
+				count_B+=1
+			elif sel_action == action_C:
+				count_C+=1
+			else:
+				raise 
+
 			dice_res = random.randint(1,6)
 			if dice_res in sel_action['match']:
 				win += 1
@@ -44,8 +71,7 @@ def play_dice_game_1p(selection_strategy, initialization_strategy, rounds=100):
 	avg = np.mean(dice_throws_arr)
 	print('Player averaged '+ str(avg) + ' throws for '+ str(rounds) +' rounds')
 
-def play_dice_game_2p(selection_strategy_p1,selection_strategy_p2,\
-	initialization_strategy_p1, initialization_strategy_p2,\
+def play_dice_game_2p(selection_strategy_p1,selection_strategy_p2,
 	rounds=100):
 	'''play dice game, 2 players. 
 	INPUT: selection_strategy,initialization_strategy, rounds
@@ -59,8 +85,9 @@ def play_dice_game_2p(selection_strategy_p1,selection_strategy_p2,\
 		win_p1 = 0
 		win_p2 = 0
 		throws = 0
-		prev_action_p1 = initialization_strategy_p1()  #choose a random action to begin
-		prev_action_p2 = initialization_strategy_p2() #choose a random action to begin
+
+		prev_action_p1 = is_r()  #choose a random action to begin
+		prev_action_p2 = is_r() #choose a random action to begin
 		prev_dice_res = -1
 
 		while profit_p1 < GOAL and profit_p2 < GOAL:
@@ -69,7 +96,8 @@ def play_dice_game_2p(selection_strategy_p1,selection_strategy_p2,\
 					  'throws':throws, 'prev_action_p1':prev_action_p1,\
 					  'prev_action_p2':prev_action_p2,\
 					  'prev_dice_res':prev_dice_res, \
-					  'win_p1':win_p1,'win_p2':win_p2,'whoAmI':'p1'}
+					  'win_p1':win_p1,'win_p2':win_p2,'whoAmI':'p1',\
+					  }
 			sel_action_p1 = selection_strategy_p1(**args_p1)
 			args_p2 = {'profit_p1':profit_p1,'profit_p2':profit_p2,\
 					  'throws':throws, 'prev_action_p1':prev_action_p1,\
@@ -78,7 +106,7 @@ def play_dice_game_2p(selection_strategy_p1,selection_strategy_p2,\
 					  'win_p1':win_p1,'win_p2':win_p2,'whoAmI':'p2',\
 					  'sel_action_p1':sel_action_p1}
 			sel_action_p2 = selection_strategy_p2(**args_p2)
-			
+
 			#check reward
 			dice_res = random.randint(1,6)
 			if dice_res in sel_action_p1['match']:
