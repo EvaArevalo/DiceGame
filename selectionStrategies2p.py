@@ -35,7 +35,53 @@ def ss2p_f(**kwargs):
 		return action_C
 	else:
 		return action_A
-		
+
+def ss2p_1(**kwargs):
+	''' Reinforcement learning based ....'''
+	whoAmI = kwargs['whoAmI']
+	if whoAmI == 'p1':
+		profit_own = kwargs['profit_p1']
+		profit_opp = kwargs['profit_p2']
+	else:
+		profit_own = kwargs['profit_p2']
+		profit_opp = kwargs['profit_p1']
+
+	if profit_own==0:
+		return action_B
+	elif profit_own==2:
+		return action_C
+	elif profit_own==3:
+		return action_B
+	elif profit_own==4:
+		return action_C
+	elif profit_own==5:
+		return action_C
+	elif profit_own==6:
+		return action_A
+	elif profit_own==7:
+		return action_C
+	elif profit_own==8:
+		return action_C
+	elif profit_own==9:
+		return action_B
+	elif profit_own==10:
+		return action_C
+
+def ss2p_2(**kwargs):
+	''' use strategy B to reach 6 points. Else, action_A'''
+		#get kwargs
+	whoAmI = kwargs['whoAmI']
+	if whoAmI == 'p1':
+		profit_own = kwargs['profit_p1']
+		profit_opp = kwargs['profit_p2']
+	else:
+		profit_own = kwargs['profit_p2']
+		profit_opp = kwargs['profit_p1']
+
+	if profit_own<6:
+		return action_B
+	else:
+		return action_A
 
 def ss2p_4(**kwargs):
 	'''if diff<=4,A, if diff>=6, B, if diff>=9, C'''
@@ -308,7 +354,7 @@ def ss2p_15(**kwargs):
 		return action_C
 
 def ss2p_16(**kwargs):
-	''' use strategy A to reach 6 points,then use strategy C.'''
+	''' use strategy B to reach 6 points,then use strategy A.'''
 		#get kwargs
 	whoAmI = kwargs['whoAmI']
 	if whoAmI == 'p1':
@@ -806,6 +852,104 @@ def ss2p_40(**kwargs):
 		return action_C
 	else:
 		return action_B
+
+def ss2p_41(**kwargs):
+	''' use strategy A to reach 6 points.Else, action_B'''
+		#get kwargs
+	whoAmI = kwargs['whoAmI']
+	if whoAmI == 'p1':
+		profit_own = kwargs['profit_p1']
+		profit_opp = kwargs['profit_p2']
+	else:
+		profit_own = kwargs['profit_p2']
+		profit_opp = kwargs['profit_p1']
+
+	if profit_own<6:
+		return action_A
+	else:
+		return action_B
+
+def ss2p_42(**kwargs):
+	''' use strategy A to reach 6 points. Else, action_C'''
+		#get kwargs
+	whoAmI = kwargs['whoAmI']
+	if whoAmI == 'p1':
+		profit_own = kwargs['profit_p1']
+		profit_opp = kwargs['profit_p2']
+	else:
+		profit_own = kwargs['profit_p2']
+		profit_opp = kwargs['profit_p1']
+
+	if profit_own<6:
+		return action_A
+	else:
+		return action_C
+
+def ss2p_43(**kwargs):
+	''' use strategy C to reach 6 points. Else, action_A'''
+		#get kwargs
+	whoAmI = kwargs['whoAmI']
+	if whoAmI == 'p1':
+		profit_own = kwargs['profit_p1']
+		profit_opp = kwargs['profit_p2']
+	else:
+		profit_own = kwargs['profit_p2']
+		profit_opp = kwargs['profit_p1']
+
+	if profit_own<6:
+		return action_C
+	else:
+		return action_A
+
+def ss2p_44(**kwargs):
+	''' use strategy C to reach 6 points. Else, action_B'''
+		#get kwargs
+	whoAmI = kwargs['whoAmI']
+	if whoAmI == 'p1':
+		profit_own = kwargs['profit_p1']
+		profit_opp = kwargs['profit_p2']
+	else:
+		profit_own = kwargs['profit_p2']
+		profit_opp = kwargs['profit_p1']
+
+	if profit_own<6:
+		return action_C
+	else:
+		return action_B
+
+def ss2p_46(**kwargs):
+	''' use strategy B to reach 6 points. Else, action_C'''
+		#get kwargs
+	whoAmI = kwargs['whoAmI']
+	if whoAmI == 'p1':
+		profit_own = kwargs['profit_p1']
+		profit_opp = kwargs['profit_p2']
+	else:
+		profit_own = kwargs['profit_p2']
+		profit_opp = kwargs['profit_p1']
+
+	if profit_own<6:
+		return action_B
+	else:
+		return action_C
+
+def ss2p_47(**kwargs):
+	''' use strategy B to reach 6 points. Else, action_C'''
+		#get kwargs
+	whoAmI = kwargs['whoAmI']
+	if whoAmI == 'p1':
+		profit_own = kwargs['profit_p1']
+		profit_opp = kwargs['profit_p2']
+	else:
+		profit_own = kwargs['profit_p2']
+		profit_opp = kwargs['profit_p1']
+
+	if profit_own<2:
+		return action_C
+	if profit_own<5:
+		return action_B
+	else:
+		return action_A
 
 def is_r():
 	return actions[random.randint(0,2)] 
