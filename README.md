@@ -33,7 +33,7 @@ Student strategies for the single player version can be found in the file: 'sele
 Student strategies for the 2 playerw version can be found in the file: 'selectionStrategies2p.py'
 
 A reinforcement learning solution using OpenAI's Gym library for Python is provided in the file:
-'ScienceGEClass_HW.ipynb'
+'ScienceGEClass_HW.ipynb' (under the ‘Reinforcement learning’ section)
 
 HOW TO RUN:
 
