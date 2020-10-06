@@ -102,6 +102,8 @@ def ss2p_4(**kwargs):
 		return action_A
 	elif diff >= 9:
 		return action_C
+	else:
+		return action_C
 
 def ss2p_5(**kwargs):
 	'''Start at C. If I get pt and 2nd didn’t get pt then I go down. 

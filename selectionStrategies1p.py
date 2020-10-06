@@ -594,35 +594,6 @@ def ss1p_42(**kwargs):
 	else:
 		return action_A
 
-def ss1p_42(**kwargs):
-	''' B until profit==6, A otherwiaw ....'''
-	prev_action = kwargs['prev_action']
-	prev_dice_res = kwargs['prev_dice_res']
-	throws = kwargs['throws']
-	profit = kwargs['profit']
-	prev_ix = actions.index(prev_action)
-
-	if profit==0:
-		return action_B
-	elif profit==2:
-		return action_C
-	elif profit==3:
-		return action_B
-	elif profit==4:
-		return action_C
-	elif profit==5:
-		return action_C
-	elif profit==6:
-		return action_A
-	elif profit==7:
-		return action_C
-	elif profit==8:
-		return action_C
-	elif profit==9:
-		return action_B
-	elif profit==10:
-		return action_C
-
 
 def is_r():
 	return actions[random.randint(0,2)] 
